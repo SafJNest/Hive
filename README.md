@@ -87,45 +87,28 @@ deduplication.
 
 ## Publish and consume
 
-The Maven coordinates are `com.hive:hive:1.0-alpha-1`. Publishing uses GitHub
-Packages for this repository. Create the tag `v1.0-alpha-1` to run the publish
-workflow, or publish locally with `mvn deploy` after configuring GitHub
-credentials in Maven settings.
+The public Maven coordinates use JitPack: `com.github.SafJNest:Hive:<version>`.
+Use a release tag or a short commit hash as the version. JitPack builds the
+artifact from this public GitHub repository on first request.
 
-Add this repository and dependency to a consumer such as Beebot:
+Add the JitPack repository and dependency to a consumer such as Beebot:
 
 ```xml
 <repositories>
   <repository>
-    <id>github</id>
-    <url>https://maven.pkg.github.com/SafJNest/Hive</url>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
   </repository>
 </repositories>
 
 <dependency>
-  <groupId>com.hive</groupId>
-  <artifactId>hive</artifactId>
-  <version>1.0-alpha-1</version>
+  <groupId>com.github.SafJNest</groupId>
+  <artifactId>Hive</artifactId>
+  <version>COMMIT_HASH</version>
 </dependency>
 ```
 
-For local Maven use, configure `~/.m2/settings.xml` with a GitHub personal
-access token (classic) that has package read access. Use package write access
-when publishing manually. The GitHub Actions workflow uses `GITHUB_TOKEN` with
-package write permission:
-
-```xml
-<settings>
-  <servers>
-    <server>
-      <id>github</id>
-      <username>${env.GITHUB_ACTOR}</username>
-      <password>${env.GITHUB_TOKEN}</password>
-    </server>
-  </servers>
-</settings>
-```
-
-The publish workflow uses the repository's `GITHUB_TOKEN` and requires package
-write permission. No Beebot classes or third-party runtime dependencies are
-included in the Hive artifact.
+Replace `COMMIT_HASH` with the short hash of the Hive commit to use. This public
+JitPack dependency needs no Maven credentials. The GitHub Actions workflow also
+publishes to GitHub Packages. No Beebot classes or third-party runtime
+dependencies are included in the Hive artifact.

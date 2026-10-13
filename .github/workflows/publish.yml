@@ -1,6 +1,7 @@
 name: Publish Maven package
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - "v1.0-alpha-1"
