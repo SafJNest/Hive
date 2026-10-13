@@ -109,6 +109,6 @@ Add the JitPack repository and dependency to a consumer such as Beebot:
 ```
 
 Replace `COMMIT_HASH` with the short hash of the Hive commit to use. This public
-JitPack dependency needs no Maven credentials. The GitHub Actions workflow also
-publishes to GitHub Packages. No Beebot classes or third-party runtime
-dependencies are included in the Hive artifact.
+JitPack dependency needs no Maven credentials. GitHub Actions builds and tests
+Hive on manual runs and on the configured tag. No Beebot classes or third-party
+runtime dependencies are included in the Hive artifact.
